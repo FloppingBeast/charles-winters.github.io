@@ -85,13 +85,26 @@ body {
 
 /* Image column */
 .about-image {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.about-image figure {
+  margin: 0;
 }
 
 .about-image img {
   width: 100%;
   max-width: 300px;
   border-radius: 4px;
+}
+
+.about-image figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 /* Contact section */
