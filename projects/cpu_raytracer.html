@@ -4,7 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Lawrence Charles Winters | CPU Raytracer</title>
+
   <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css">
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
 </head>
 
 <body>
@@ -82,7 +87,32 @@
         scanline image,
         a mode for drawing normals, and a full lighting mode that showcases material types under scene illumination
       </p>
+    </section>
 
+    <div class="media-grid three-images">
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/DiffuseA2.png" alt="Diffuse Render">
+        <figcaption>
+          Diffuse Rendering Mode
+        </figcaption>
+      </figure>
+    
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/NormalsA2.png" alt="Normal Render">
+        <figcaption>
+          Normals Rendering Mode
+        </figcaption>
+      </figure>
+    
+      <figure class="doc-figure third-image">
+        <img src="../assets/images/cpu/LightA2.png" alt="Light Render">
+        <figcaption>
+          Light Rendering Mode
+        </figcaption>
+      </figure>
+    </div>
+
+    <section class="doc-section">
       <p>
         Antialiasing is implemented using a quasi-random R2 sampling pattern to efficiently distribute rays within each
         pixel.
@@ -127,6 +157,30 @@
         below.
       </p>
     </section>
+
+
+
+    <div class="media-grid">
+    
+      <figure class="doc-figure">
+        <video controls autoplay muted loop playsinline>
+          <source src="../assets/videos/cpu/SlowRender.mp4" type="video/mp4">
+        </video>
+        <figcaption>
+          Without KD-Tree (43.31 s)
+        </figcaption>
+      </figure>
+    
+      <figure class="doc-figure">
+        <video controls autoplay muted loop playsinline>
+          <source src="../assets/videos/cpu/KDTreeRender.mp4" type="video/mp4">
+        </video>
+        <figcaption>
+          With KD-Tree (6.07 s)
+        </figcaption>
+      </figure>
+    
+    </div>
 
     <section class="doc-section">
       <h2>Materials and Lighting</h2>
@@ -236,6 +290,8 @@
       </a>
     </div>
   </footer>
+
+  <script type="text/javascript" src="/functions.js"></script>
 
 </body>
 

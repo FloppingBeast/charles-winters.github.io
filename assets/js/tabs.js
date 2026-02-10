@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const tabs = document.querySelectorAll(".tab");
-  const codeBlocks = document.querySelectorAll(".code-block");
+  const tabs = document.querySelectorAll(".code-tab-button");
+  const codeBlocks = document.querySelectorAll(".code-tab-content");
   const explanations = document.querySelectorAll(".explanation");
 
   tabs.forEach(tab => {
