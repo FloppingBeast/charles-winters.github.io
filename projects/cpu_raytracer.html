@@ -125,6 +125,30 @@
       </p>
     </section>
 
+    <div class="media-grid three-images">
+      <figure class="doc-figure third-image">
+        <img src="../assets/images/cpu/R2Sampling.png" alt="R2 Sampling">
+        <figcaption>
+          Quasi-Random R2 Sampling
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/NOAAScene_M1.png" alt="No antialiasing">
+        <figcaption>
+          No Anti-aliasing
+        </figcaption>
+      </figure>
+    
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/AAScene_M1.png" alt="Antialiasing">
+        <figcaption>
+          Anti-aliasing (Notice smoothness of lines on larger spheres)
+        </figcaption>
+      </figure>
+
+    </div>
+
     <section class="doc-section">
       <h2>Acceleration Structure</h2>
       <p>
@@ -189,7 +213,27 @@
         (transmissive). Each material type is demonstrated in the images below to illustrate their respective shading
         behavior.
       </p>
+    </section>
 
+    <div class="media-grid">
+    
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/lawrence.winters_BoxTransmission_aa100put.png" alt="Box Transmissive">
+        <figcaption>
+          Diffuse, Transmissive and Spherical Light Source
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/A3.png" alt="Variety of Mats">
+        <figcaption>
+          Diffuse, Specular and Transmissive Materials
+        </figcaption>
+      </figure>
+    
+    </div>
+
+    <section class="doc-section">
       <p>
         Material evaluation is implemented using a polymorphic design in C++, where a shared material interface defines
         a common
@@ -211,7 +255,16 @@
         contribute
         higher luminance, allowing significant lighting contributions to be captured earlier in the sampling process.
       </p>
+    </section>
 
+    <figure class="doc-figure">
+        <img src="../assets/images/cpu/lawrence.winters_CS500_output.png" alt="Global Illumination">
+        <figcaption>
+          Global Illumination
+        </figcaption>
+      </figure>
+
+    <section class="doc-section">
       <p>
         The implementation was informed by existing research and applies luminance-weighted sampling of the environment
         map to
@@ -224,7 +277,6 @@
 
     <section class="doc-section">
       <h2>Final Results</h2>
-
       <p>
         This project significantly strengthened my understanding of the physical principles underlying ray tracing, as
         well as
@@ -234,7 +286,21 @@
         structures while
         maintaining readable and maintainable code.
       </p>
+    </section>
 
+    <div class="media-grid">
+    
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/lawrence.winters_BunnyDiffuse_aa500.png" alt="Diffuse Bunny">
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/lawrence.winters_BunnyGlass_aa500.png" alt="Glass Bunny">
+      </figure>
+    
+    </div>
+
+    <section class="doc-section">
       <p>
         In addition to the implementation work, the project concluded with a written research paper covering the
         literature and
