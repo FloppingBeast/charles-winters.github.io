@@ -40,7 +40,7 @@
       <p>
         The purpose of this project was to build a deeper understanding of ray tracing by implementing a CPU-based ray
         tracer
-        from scratch. The work explores core techniques such as ray–geometry intersection testing, illumination and
+        from scratch in C++. The work explores core techniques such as ray-geometry intersection testing, illumination and
         shading
         models, and antialiasing. In addition to the mathematical and physical principles of ray tracing, this project
         emphasizes practical implementation and core design decisions involved in constructing a functional renderer.
@@ -63,18 +63,6 @@
         scope of
         this work. As a result, performance tradeoffs inherent to CPU ray tracing were accepted and evaluated
         accordingly.
-      </p>
-
-      <p>
-        The primary goal of this project was educational, to implement a ray tracer using modern techniques and
-        reasonable
-        simplifications while maintaining correctness. The renderer was written entirely in C++, with GLM used for
-        vector and
-        matrix mathematics to support ray generation and intersection calculations. Beyond rendering output, a key
-        objective was
-        to deepen my understanding of how individual systems interact within a small engine, from ray generation to
-        shading and
-        final output.
       </p>
     </section>
 
@@ -117,7 +105,7 @@
         Antialiasing is implemented using a quasi-random R2 sampling pattern to efficiently distribute rays within each
         pixel.
         For each sample, an initial ray origin is generated from the R2 sequence, mapped from pixel space into world
-        coordinates, and cast into the scene. Ray–geometry intersection tests are performed to determine visible
+        coordinates, and cast into the scene. Ray-geometry intersection tests are performed to determine visible
         surfaces, after
         which the material associated with the intersected object is evaluated to compute contributions. The resulting
         color
@@ -152,7 +140,7 @@
     <section class="doc-section">
       <h2>Acceleration Structure</h2>
       <p>
-        Initial renders of even simple scenes were slow due to the ray–primitive intersection testing, where each ray
+        Initial renders of even simple scenes were slow due to the ray-primitive intersection testing, where each ray
         was tested
         against every object in the scene. This approach does not scale and quickly becomes impractical as scene
         complexity
@@ -162,27 +150,16 @@
       </p>
 
       <p>
-        A three-dimensional bounding volume hierarchy (BVH) was implemented to spatially partition scene geometry and
+        A three-dimensional tree (K-d tree) was implemented to spatially partition scene geometry and
         prune
-        large portions of the scene during traversal. The BVH construction uses the Surface Area Heuristic (SAH) for
+        large portions of the scene during traversal. The 3-d tree uses the Surface Area Heuristic (SAH) for
         node
         splitting, producing a hierarchy that minimizes expected traversal and intersection cost. During rendering, rays
         are
         tested against bounding volumes first, and primitive intersection tests are only performed for nodes that are
         potentially intersected.
       </p>
-
-      <p>
-        This optimization creates more efficient rendering of scenes containing complex geometry. The renderer supports
-        intersection tests for multiple primitive types, including spheres, boxes, convex polygons, axis-aligned
-        bounding boxes,
-        and triangles. Comparative results illustrating the performance improvement before and after BVH integration are
-        shown
-        below.
-      </p>
     </section>
-
-
 
     <div class="media-grid">
     
@@ -275,6 +252,44 @@
 
     </section>
 
+    <div class="media-grid three-images">
+      <figure class="doc-figure third-image">
+        <img src="../assets/images/cpu/SeaSky.png" alt="R2 Sampling">
+        <figcaption>
+          Total Sea Sky Environment Map Image
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure third-image">
+        <img src="../assets/images/cpu/SeaSkyImportanceMap.png" alt="No antialiasing">
+        <figcaption>
+          Non View Dependent Environment Map Sampling
+        </figcaption>
+      </figure>
+    
+      <figure class="doc-figure third-image">
+        <img src="../assets/images/cpu/SeaSkyIDES.png" alt="Antialiasing">
+        <figcaption>
+          View Dependent Environment Map Sampling
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/NoIDESRaytrace.png" alt="Uniform Sampling">
+        <figcaption>
+          Non-View Dependent Sampling
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/cpu/IDESRaytrace.png" alt="View Dependent Sampling">
+        <figcaption>
+          View Dependent Sampling (Less Noise, Sharper Shadows)
+        </figcaption>
+      </figure>
+
+    </div>
+
     <section class="doc-section">
       <h2>Final Results</h2>
       <p>
@@ -310,6 +325,9 @@
       </p>
 
     </section>
+
+    <iframe src="../assets/docs/cpu/Report.pdf" width="100%" height="600px" style="border: none;">
+    </iframe>
 
     <section class="doc-section">
       <h2>Potential Improvements</h2>
