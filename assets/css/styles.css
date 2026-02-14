@@ -290,6 +290,12 @@ a {
   font-size: 1.1rem;
 }
 
+.project-highlights {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+  line-height: 1.6;
+}
+
 .doc-section {
   margin-bottom: 3rem;
 }
