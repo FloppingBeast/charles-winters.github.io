@@ -32,21 +32,21 @@
 
     <section class="doc-section">
       <h2>Overview</h2>
-        <p>
-          This project series focused on implementing core gameplay AI systems inside a given 
-          C++ engine, ending with a team-based procedural terrain project built in Unreal Engine.
-          Over the 10-week course, I implemeneted several foundational AI systems used in 
-          modern games, including behavior trees, optimized A* pathfinding, and terrain analysis. Each 
-          milestone required integration into the existing framework.
-        </p>
+      <p>
+        This project series focused on implementing core gameplay AI systems inside a given
+        C++ engine, ending with a team-based procedural terrain project built in Unreal Engine.
+        Over the 10-week course, I implemeneted several foundational AI systems used in
+        modern games, including behavior trees, optimized A* pathfinding, and terrain analysis. Each
+        milestone required integration into the existing framework.
+      </p>
     </section>
 
     <section class="doc-section">
       <h2>Behavior Trees</h2>
       <p>
-        I implemented a behavior tree system supporting core node categories such as control flow, 
-        decorators, and leaf/action nodes. Using this framework, I created multiple behavior trees that 
-        drove autonomous agents in an open simulation environment. The system emphasized 
+        I implemented a behavior tree system supporting core node categories such as control flow,
+        decorators, and leaf/action nodes. Using this framework, I created multiple behavior trees that
+        drove autonomous agents in an open simulation environment. The system emphasized
         debugging clarity, allowing behaviors to be iterated on by restructuring node hierarchies
         rather than rewriting logic.
       </p>
@@ -87,21 +87,21 @@
     </div>
 
     <figure class="doc-figure">
-        <video controls autoplay muted loop playsinline>
-          <source src="../assets/videos/ai/BehaviorTrees.mp4" type="video/mp4">
-        </video>
-        <figcaption>
-          The above Behavior Trees in an Open Simulation
-        </figcaption>
+      <video controls autoplay muted loop playsinline>
+        <source src="../assets/videos/ai/BehaviorTrees.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        The above Behavior Trees in an Open Simulation
+      </figcaption>
     </figure>
 
     <section class="doc-section">
       <h2>Optimized A* Pathfinding</h2>
       <p>
-        I implemented grid-based A* pathfinding with performance constraints designed to avoid 
-        naive implementations. The system integrated directly into the engine framework and 
-        supported obstacle navigation and dynamic path requests for moving agents. Particular 
-        attention was paid to data structures and heuristic usage to ensure predictable performance 
+        I implemented grid-based A* pathfinding with performance constraints designed to avoid
+        naive implementations. The system integrated directly into the engine framework and
+        supported obstacle navigation and dynamic path requests for moving agents. Particular
+        attention was paid to data structures and heuristic usage to ensure predictable performance
         under real-time conditions.
       </p>
 
@@ -111,28 +111,28 @@
     </section>
 
     <figure class="doc-figure">
-        <video controls autoplay muted loop playsinline>
-          <source src="../assets/videos/ai/AStarInAction.mp4" type="video/mp4">
-        </video>
-        <figcaption>
-          A* Pathfinding in Action
-        </figcaption>
+      <video controls autoplay muted loop playsinline>
+        <source src="../assets/videos/ai/AStarInAction.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        A* Pathfinding in Action
+      </figcaption>
     </figure>
-    
+
     <figure class="doc-figure">
       <video controls autoplay muted loop playsinline>
         <source src="../assets/videos/ai/HeuristicShowcase.mp4" type="video/mp4">
       </video>
       <figcaption>
-          Cycle of the 5 Different Heuristics (Names in the top right under A*)
-        </figcaption>
+        Cycle of the 5 Different Heuristics (Names in the top right under A*)
+      </figcaption>
     </figure>
 
     <section class="doc-section">
       <h2>Terrain Analysis System</h2>
       <p>
-        Building on the same grid representation used for pathfinding, I implemented a terrain 
-        analysis system that evaluated cells based on metrics such as openness, line-of-sight visibility, 
+        Building on the same grid representation used for pathfinding, I implemented a terrain
+        analysis system that evaluated cells based on metrics such as openness, line-of-sight visibility,
         search history, and propagation. These evaluations enabled the AI to behave as though it was playing
         hide and seek, demonstrating how spatial reasoning ties to navigation systems.
       </p>
@@ -147,8 +147,8 @@
         <source src="../assets/videos/ai/TerrainAnalysis.mp4" type="video/mp4">
       </video>
       <figcaption>
-          Different Terrain Analysis Options
-        </figcaption>
+        Different Terrain Analysis Options
+      </figcaption>
     </figure>
 
     <figure class="doc-figure">
@@ -156,24 +156,24 @@
         <source src="../assets/videos/ai/HideSeekDemo.mp4" type="video/mp4">
       </video>
       <figcaption>
-          Hide and Seek Demo
-        </figcaption>
+        Hide and Seek Demo
+      </figcaption>
     </figure>
 
     <section class="doc-section">
       <h2>Procedural Terrain Themer (Team Project)</h2>
       <p>
-        For the final team project, we created a procedural terrain generation system in 
-        Unreal Engine using noise-based generation and material-driven biome theming. 
-        My primary contribution focused on technical analysis and documentation where I studied 
-        the implemented system, analyzed the blueprint architecture, and authored a research 
-        paper explaining the design decisions, generation pipeline, and practical outcomes of the 
-        terrain theming approach. This required reverse-engineering and translating implementation 
+        For the final team project, we created a procedural terrain generation system in
+        Unreal Engine using noise-based generation and material-driven biome theming.
+        My primary contribution focused on technical analysis and documentation where I studied
+        the implemented system, analyzed the blueprint architecture, and authored a research
+        paper explaining the design decisions, generation pipeline, and practical outcomes of the
+        terrain theming approach. This required reverse-engineering and translating implementation
         details into clear technical communication.
       </p>
 
       <p>
-        <b>Key focus</b>: Technical analysis, system documentation, and communication of 
+        <b>Key focus</b>: Technical analysis, system documentation, and communication of
         implementation design.
       </p>
     </section>
@@ -183,11 +183,11 @@
         <source src="../assets/videos/ai/TerrainThemer.mp4" type="video/mp4">
       </video>
       <figcaption>
-          Terrain Themer Demo (Narrated by teammate CJ Osborne)
-        </figcaption>
+        Terrain Themer Demo (Narrated by teammate CJ Osborne)
+      </figcaption>
     </figure>
 
-    <section class ="doc-section">
+    <section class="doc-section">
       <iframe src="../assets/docs/ai/TerrainThemerPaper.pdf" width="100%" height="600px" style="border: none;">
       </iframe>
     </section>
@@ -195,10 +195,10 @@
     <section class="doc-section">
       <h2>Results & Takeaways</h2>
       <p>
-        This project series gave me experience implementing relevant game AI systems from the ground up. I strengthened 
+        This project series gave me experience implementing relevant game AI systems from the ground up. I strengthened
         my understanding of:
       </p>
-      <ul class ="project-highlights">
+      <ul class="project-highlights">
         <li>Behavior tree architecture and scalable decision systems</li>
         <li>Real-time pathfinding optimization beyond basic graph algorithms</li>
         <li>Terrain analysis as a bridge between navigation and tactical behavior</li>

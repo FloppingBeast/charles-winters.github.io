@@ -27,9 +27,116 @@
   <main class="project-doc">
 
     <header class="project-header">
-      <h1>Game AI Systems</h1>
-      
+      <h1>Bloops</h1>
     </header>
+
+    <section class="doc-section">
+      <h2>Overview</h2>
+      <p>
+        <b>Bloops</b> was a 48-hour Global Game Jam project built by a nine-person team in Unity. The game is a top-down
+        puzzle experience where players redirect bubbles using interactive bathroom objects. I focused primarily on core
+        gameplay systems and bubble movement mechanics.
+      </p>
+
+      <div class="video-wrap">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/zW3osyZU2eQ" title="Bloops Trailer"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="doc-section contributions">
+      <div class="contrib-item">
+        <h2>Contributions</h2>
+      </div>
+
+      <!-- Sponge Bounce -->
+      <div class="contrib-item">
+        <h3>Sponge Bounce</h3>
+        <p>
+          Implemented a directional sponge mechanic that redirects bubbles at a 90° angle while blending movement along
+          the sponge surface.
+        </p>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/bloops/BubbleBouncer.mp4" type="video/mp4">
+          </video>
+          <figcaption>Basic Bouncing Mechanic</figcaption>
+        </figure>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/bloops/BubbleBouncerFun.mp4" type="video/mp4">
+          </video>
+          <figcaption>Little Fun Easter Egg</figcaption>
+        </figure>
+      </div>
+
+      <!-- Fan Interaction -->
+      <div class="contrib-item">
+        <h3>Fan Interaction</h3>
+        <p>
+          Built a raycast-based airflow mechanic that dynamically changes bubble velocity based on fan orientation.
+        </p>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/bloops/FanDemo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Fan Pushing Bubbles</figcaption>
+        </figure>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/bloops/FanRaycast.mp4" type="video/mp4">
+          </video>
+          <figcaption>Fan Raycast Visualization</figcaption>
+        </figure>
+      </div>
+
+      <!-- Parabolic Launcher -->
+      <div class="contrib-item">
+        <h3>Parabolic Launcher</h3>
+        <p>
+          Created parabolic arc trajectories that integrate cleanly back into the grid.
+        </p>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/bloops/LauncherDemo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Launcher Demonstration</figcaption>
+        </figure>
+      </div>
+
+      <!-- Bubble Movement -->
+      <div class="contrib-item">
+        <h3>Bubble Movement</h3>
+        <p>
+          Implemented grid-aligned velocity movement with recentering logic to keep bubbles stable and visually smooth.
+        </p>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/bloops/FullUseDemo.mp4" type="video/mp4">
+          </video>
+          <figcaption>Complete Gameplay Demonstration</figcaption>
+        </figure>
+      </div>
+
+      <div class="contrib-item">
+        <h2>Outcome</h2>
+        <p>
+          The team delivered a polished, playable build within 48 hours and successfully submitted it
+          to this 
+          <a href="https://globalgamejam.org/games/2025/bloops-6" target="_blank" rel="noopener">Global Game Jam webpage</a>. The project demonstrated strong rapid prototyping,
+          cross-discipline collaboration, and my ability to quickly adapt to new tools while maintaining
+          technical quality under pressure.
+        </p>
+      </div>
+    </section>
 
   </main>
 

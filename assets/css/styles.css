@@ -305,6 +305,11 @@ a {
   margin-bottom: 1rem;
 }
 
+.doc-section h3 {
+  font-size: 1.4rem;
+  margin-bottom: .2rem;
+}
+
 .doc-section p {
   line-height: 1.7;
   margin-bottom: 1rem;
@@ -327,6 +332,65 @@ a {
   margin-top: 0.75rem;
   font-size: 0.9rem;
   color: #9a9a9a;
+}
+
+.contributions {
+  margin-bottom: 3rem;
+}
+
+.contrib-item {
+  padding: 1.25rem 0 1.75rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.contrib-item:last-child {
+  border-bottom: none;
+}
+
+.contrib-item h2 {
+  font-size: 1.6rem;
+  margin-bottom: .1rem;
+}
+
+.contrib-item h3 {
+  margin-bottom: 0.35rem;
+}
+
+.contrib-item p {
+  margin-bottom: 0.9rem;
+  line-height: 1.5;
+}
+
+.contrib-item video {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.contrib-item figure {
+  margin: 1.5rem 0;  /* Space between figures */
+  text-align: center; /* Centers inline/text content */
+}
+
+.contrib-item figcaption {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #9a9a9a;
+  width: 100%;
+}
+
+.contrib-item a,
+.doc-section a {
+  color: #5ba3f5;  /* Nice blue color */
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.contrib-item a:hover,
+.doc-section a:hover {
+  color: #83bdf7;  /* Lighter blue on hover */
 }
 
 /*//////////////////////////////////////////////////////////////////////*/
@@ -365,4 +429,18 @@ a {
 .media-grid.three-images .third-image {
   grid-column: 1 / span 2;       /* span across both columns */
   justify-self: center;           /* center it horizontally */
+}
+
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
