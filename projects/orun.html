@@ -27,9 +27,134 @@
   <main class="project-doc">
 
     <header class="project-header">
-      <h1>WORK IN PROGRESS</h1>
+      <h1>Orun</h1>
     </header>
 
+    <section class="doc-section">
+      <h2>Overview</h2>
+      <p>
+        <b>Orun</b> was a first-semester prototype developed by a 27-person team at
+        <a href="https://www.digipen.edu/" rel="noopener">DigiPen Institute of Technology</a> during
+        my study abroad in Spain. Orun was an exploration game with puzzle and combat elements, drawing visual
+        inspiration from games like Journey. As one of a small number of programmers on a team of predominantly artists,
+        I owned the player controller framework and the full camera system.
+      </p>
+
+      <div class="button-container">
+        <a href="https://charleswinters.itch.io/orun" target="_blank" class="play-button itch-link">
+          Play on itch.io
+        </a>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <h2>Player Controller & State Machine</h2>
+      <p>
+        I built the initial player controller framework in Unreal Engine Blueprints, integrating global
+        references, basic movement, and camera controls. A core part of this work was designing an
+        enumeration-based state machine to handle transitions between combat, non-combat, and idle states. This was
+        structured specifically so the animation programmer could easily reference and build on top of it.
+      </p>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/orun/PlayerStatesEnumeration.PNG" alt="Player States">
+        <figcaption>
+          Player State Enumeration Structure
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="doc-section contributions">
+      <div class="contrib-item">
+        <h2>Camera System</h2>
+        <p>
+          The camera system was my primary focus for the project and went through several iterations as
+          the game's design changed. Working closely with producers and designers, I developed three
+          distinct camera types.
+        </p>
+      </div>
+
+
+      <div class="contrib-item">
+        <h3>Primary Player Camera</h3>
+        <p>
+          The <b>primary player camera</b> used a spring arm attachment with trigger-based rotation control.
+          Manually placed triggers around the map would smoothly interpolate the camera to a new angle
+          and support zoom in/out, giving designers precise control over how each area felt without
+          hardcoding anything.
+        </p>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/orun/PrimaryPlayerCamera.mp4" type="video/mp4">
+          </video>
+          <figcaption>Primary Camera</figcaption>
+        </figure>
+
+        <figure class="doc-figure">
+          <img src="../assets/images/orun/PrimaryCameraTrigger.PNG" alt="Primary Camera BP">
+          <figcaption>Camera Adjustment Trigger BP</figcaption>
+        </figure>
+      </div>
+
+      <div class="contrib-item">
+        <h3>Static Object Camera</h3>
+        <p>
+          The <b>static object camera</b> locked onto a point of interest from a fixed position, useful for drawing
+          player attention to key moments or puzzle elements.
+        </p>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/orun/LookAtObjectCameraRetake.mp4" type="video/mp4">
+          </video>
+          <figcaption>Static Look-At Camera</figcaption>
+        </figure>
+
+        <figure class="doc-figure">
+          <img src="../assets/images/orun/LookAtObjectTrigger.PNG" alt="Static Camera BP">
+          <figcaption>Small Section of Static Camera BP</figcaption>
+        </figure>
+      </div>
+
+      <div class="contrib-item">
+        <h3>Spline Camera</h3>
+        <p>
+          The <b>spline camera</b> tracked alongside the player along a designer-placed spline path, with adjustable
+          follow speed and player proximity settings for smooth, cinematic movement.
+        </p>
+
+        <figure>
+          <video controls autoplay muted loop playsinline>
+            <source src="../assets/videos/orun/SplineCamera.mp4" type="video/mp4">
+          </video>
+          <figcaption>Static Look-At Camera</figcaption>
+        </figure>
+
+        <figure class="doc-figure">
+          <img src="../assets/images/orun/SplineCameraTrigger.PNG" alt="Static Camera BP">
+          <figcaption>Camera Interpolation BP</figcaption>
+        </figure>
+      </div>
+
+
+      <p>
+        All three camera types were built with designer-facing parameters including transition speed,
+        zoom range, and one-time trigger options. This allowed design team to create varied
+        experiences without needing to touch the underlying logic.
+      </p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Challenges & Takeaways</h2>
+      <p>
+        Working on a 27-person team where 21 members were artists meant the programmers carried a heavy
+        load, often collaborating on the same systems simultaneously. The camera system in particular
+        required constant communication with producers and designers as the game's vision shifted
+        throughout the semester. Building something flexible enough to support that kind of iteration
+        was the central challenge of the project and one of my most valuable lessons.
+      </p>
+    </section>
   </main>
 
   <!-- Footer -->
