@@ -27,8 +27,127 @@
   <main class="project-doc">
 
     <header class="project-header">
-      <h1>WORK IN PROGRESS</h1>
+      <h1>Vulkan Real-Time Raytracer</h1>
     </header>
+
+    <section class="doc-section">
+      <h2>Overview</h2>
+      <p>
+        The purpose of this project was to gain some exposure to vulkan and the newer graphics hardware features of
+        real time raytracing via the Vulkan API. This class provided a framework that was built on top to effectively
+        implement the individual milestones throughout the class. This project gave me an an understanding of
+        ray-tracing (Monte Carlo path tracing), BRDF lighting calculations, and real time
+        denoising filters. It also gave me a grounding in the Vulkan API, as I had to build a Vulkan real time
+        application
+        including both rasterization and raytracing pipelines.
+      </p>
+    </section>
+
+    <!-- MILESTONES -->
+    <section class="doc-section">
+      <h2>Milestone 1 - Vulkan Bootstrapping</h2>
+      <p>
+        The canonical "first light" moment of any graphics project. This milestone was about becoming fluent in
+        Vulkan's verbose initialization process — instance creation, physical and logical device selection,
+        swapchain setup, render passes, and the graphics pipeline. The output: a single color-gradient triangle,
+        where each vertex carries a distinct RGB value interpolated across the surface by the rasterizer. Simple
+        visually, but the scaffolding built here underpinned everything that followed.
+      </p>
+    </section>
+
+    <figure class="doc-figure">
+      <img src="../assets/images/vulkan/project1_output.PNG" alt="Project 1">
+      <figcaption>
+        First Light
+      </figcaption>
+    </figure>
+
+    <section class="doc-section">
+      <h2>Milestone 2 - Scanline Rasterization</h2>
+      <p>
+        With the pipeline established, this milestone extended the renderer to handle full scene geometry using
+        scanline rasterization. Geometry was submitted through vertex and index buffers, with a depth buffer to
+        resolve occlusion. This was the traditional real-time rendering approach — fast, hardware-accelerated,
+        and the foundation against which later ray-based techniques could be compared. Included basic
+        Phong-style shading via GLSL fragment shaders.
+      </p>
+    </section>
+
+    <figure class="doc-figure">
+      <img src="../assets/images/vulkan/project2_output.PNG" alt="Project 2">
+      <figcaption>
+        Rasterization
+      </figcaption>
+    </figure>
+
+    <section class="doc-section">
+      <h2>Milestone 3 - Ray Casting</h2>
+      <p>
+        The pivot from rasterization to ray-based rendering. A compute shader fired one ray per pixel from a
+        virtual camera into the scene, testing for intersections with scene geometry using a BVH acceleration
+        structure. On hit, the surface normal was used to compute a basic shading response. No bounces yet — but
+        shadows, sharp reflections, and correct occlusion all became possible. This is where the visual
+        character of the renderer fundamentally changed.
+      </p>
+    </section>
+
+    <figure class="doc-figure">
+      <img src="../assets/images/vulkan/project3_output.PNG" alt="Project 3">
+      <figcaption>
+        Ray Casting
+      </figcaption>
+    </figure>
+
+    <section class="doc-section">
+      <h2>Milestone 4 - Pathtracing</h2>
+      <p>
+        Single-bounce casting became full recursive path tracing. Rays now scatter at surfaces according to a
+        BRDF — diffuse, specular, or a mix — and carry radiance back through the scene from light sources. A
+        Monte Carlo estimator averages many samples per pixel to converge on the true light transport integral.
+        The result was physically correct soft shadows, color bleeding, and indirect illumination. Also noisy as
+        hell per frame, which set up the next two milestones.
+      </p>
+    </section>
+
+    <section class="doc-section">
+      <h2>Milestone 5 - History Tracking</h2>
+      <p>
+        To combat per-frame noise without denoising, this milestone introduced a temporal accumulation buffer.
+        Each frame's output is blended with a running history of previous frames, exponentially weighting recent
+        samples more heavily. Over time, the image converges to a clean result — as long as the camera is
+        stationary. Camera motion invalidates history samples, requiring per-pixel reprojection and disocclusion
+        detection to avoid ghosting artifacts. A significant engineering challenge.
+      </p>
+    </section>
+
+    <figure class="doc-figure">
+      <video controls autoplay muted loop playsinline>
+        <source src="../assets/videos/vulkan/project5_video.mkv" type="video/mp4">
+      </video>
+      <figcaption>
+        Accumulation
+      </figcaption>
+    </figure>
+
+    <section class="doc-section">
+      <h2>Milestone 6 - Denoising</h2>
+      <p>
+        The final milestone tackled noise head-on with a post-process denoising pass. A spatiotemporal filter —
+        informed by per-pixel surface normals, depth, and albedo G-buffer data — selectively blurs noisy regions
+        while preserving sharp edges and geometric detail. The result is a clean, stable image even at low
+        sample counts per frame. This closed the loop on real-time path tracing: physically accurate lighting at
+        interactive framerates.
+      </p>
+    </section>
+
+    <figure class="doc-figure">
+      <video controls autoplay muted loop playsinline>
+        <source src="../assets/videos/vulkan/project6_video.mkv" type="video/mp4">
+      </video>
+      <figcaption>
+        Accumulation
+      </figcaption>
+    </figure>
 
   </main>
 
