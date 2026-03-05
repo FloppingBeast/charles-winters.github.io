@@ -36,10 +36,9 @@
         The purpose of this project was to gain some exposure to vulkan and the newer graphics hardware features of
         real time raytracing via the Vulkan API. This class provided a framework that was built on top to effectively
         implement the individual milestones throughout the class. This project gave me an an understanding of
-        ray-tracing (Monte Carlo path tracing), BRDF lighting calculations, and real time
-        denoising filters. It also gave me a grounding in the Vulkan API, as I had to build a Vulkan real time
-        application
-        including both rasterization and raytracing pipelines.
+        ray-tracing (Monte Carlo path tracing), BRDF lighting calculations, and real time denoising filters. It also
+        gave me a grounding in the Vulkan API, as I had to build a Vulkan real time application including both
+        rasterization and raytracing pipelines.
       </p>
     </section>
 
@@ -47,11 +46,11 @@
     <section class="doc-section">
       <h2>Milestone 1 - Vulkan Bootstrapping</h2>
       <p>
-        The canonical "first light" moment of any graphics project. This milestone was about becoming fluent in
-        Vulkan's verbose initialization process — instance creation, physical and logical device selection,
-        swapchain setup, render passes, and the graphics pipeline. The output: a single color-gradient triangle,
-        where each vertex carries a distinct RGB value interpolated across the surface by the rasterizer. Simple
-        visually, but the scaffolding built here underpinned everything that followed.
+        The first milestone was about becoming accustomed to Vulkan's verbose initialization process including instance
+        creation, physical and logical device selection, swapchain setup, render passes, and the graphics pipeline. The
+        output for this milestone was a single color-gradient triangle, where each vertex carries a distinct RGB value
+        interpolated across the surface by the rasterizer. Simple visually, but this milestone contained the building
+        blocks for all milestones that followed.
       </p>
     </section>
 
@@ -109,43 +108,110 @@
       </p>
     </section>
 
+    <div class="media-grid three-images">
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/PathtracingNoBRDF.PNG" alt="">
+        <figcaption>
+
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/BRDF.PNG" alt="">
+        <figcaption>
+
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/teapot_nobrdf.PNG" alt="">
+        <figcaption>
+
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/teapot_brdf.PNG" alt="">
+        <figcaption>
+
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/tv_nobrdf.PNG" alt="">
+        <figcaption>
+
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/tv_brdf.PNG" alt="">
+        <figcaption>
+
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/radio_nobrdf.PNG" alt="">
+        <figcaption>
+
+        </figcaption>
+      </figure>
+
+      <figure class="doc-figure">
+        <img src="../assets/images/vulkan/radio_brdf.PNG" alt="">
+        <figcaption>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="doc-figure">
+      <video controls autoplay muted loop playsinline>
+        <source src="../assets/videos/vulkan/project4_BRDF.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        
+      </figcaption>
+    </figure>
+
     <section class="doc-section">
       <h2>Milestone 5 - History Tracking</h2>
       <p>
-        To combat per-frame noise without denoising, this milestone introduced a temporal accumulation buffer.
-        Each frame's output is blended with a running history of previous frames, exponentially weighting recent
-        samples more heavily. Over time, the image converges to a clean result — as long as the camera is
-        stationary. Camera motion invalidates history samples, requiring per-pixel reprojection and disocclusion
-        detection to avoid ghosting artifacts. A significant engineering challenge.
+        
       </p>
     </section>
 
     <figure class="doc-figure">
       <video controls autoplay muted loop playsinline>
-        <source src="../assets/videos/vulkan/project5_video.mkv" type="video/mp4">
+        <source src="../assets/videos/vulkan/project5_mildmovement.mp4" type="video/mp4">
       </video>
       <figcaption>
-        Accumulation
+        
+      </figcaption>
+    </figure>
+
+    <figure class="doc-figure">
+      <video controls autoplay muted loop playsinline>
+        <source src="../assets/videos/vulkan/project5_heavymovement.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        
       </figcaption>
     </figure>
 
     <section class="doc-section">
       <h2>Milestone 6 - Denoising</h2>
       <p>
-        The final milestone tackled noise head-on with a post-process denoising pass. A spatiotemporal filter —
-        informed by per-pixel surface normals, depth, and albedo G-buffer data — selectively blurs noisy regions
-        while preserving sharp edges and geometric detail. The result is a clean, stable image even at low
-        sample counts per frame. This closed the loop on real-time path tracing: physically accurate lighting at
-        interactive framerates.
+        
       </p>
     </section>
 
     <figure class="doc-figure">
       <video controls autoplay muted loop playsinline>
-        <source src="../assets/videos/vulkan/project6_video.mkv" type="video/mp4">
+        <source src="../assets/videos/vulkan/project6_Denoiser.mp4" type="video/mp4">
       </video>
       <figcaption>
-        Accumulation
+        
       </figcaption>
     </figure>
 
