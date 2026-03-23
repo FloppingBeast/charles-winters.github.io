@@ -17,9 +17,7 @@
 
     <nav class="nav-links">
       <a href="../index.html">Projects</a>
-      <a href="../assets/docs/lawrence.winters_CV.pdf" target="_blank" rel="noopener">
-        Resume
-      </a>
+      <a href="../assets/docs/lawrence.winters_CV.pdf" target="_blank" rel="noopener">Resume</a>
       <a href="../about/about.html">About Me</a>
     </nav>
   </header>
@@ -28,38 +26,220 @@
 
     <header class="project-header">
       <h1>KnightLight</h1>
+      <p class="project-subtitle">Physics Programmer &mdash; DigiPen Institute of Technology &mdash; 8 Months</p>
     </header>
 
+    <!-- ==================== OVERVIEW ==================== -->
     <section class="doc-section">
       <h2>Overview</h2>
       <p>
-        KnightLight is a tile-based 2D puzzle-platformer in which players navigate a dark environment by illuminating 
-        their surroundings. The game was developed as part of the GAM 200-250 course sequence at DigiPen Institute of Technology, 
-        a team-based production course focused on building a complete game using a custom C++ engine.
+        KnightLight is a tile-based 2D puzzle-platformer where players navigate a dark environment by illuminating
+        their surroundings. It was developed over eight months as part of the GAM 200–250 course sequence at DigiPen
+        Institute of Technology — a multi-semester, team-based production course built around shipping a complete game
+        on a custom C++ engine.
       </p>
 
+      <!-- VIDEO: Embed the official KnightLight trailer / gameplay reel here -->
+      <div class="video-wrap">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/8KWFWvNyhOw?si=u-VxdZdJO60Fm9qe"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+
       <p>
-       I served as the primary physics programmer on a seven-person team, collaborating closely with designers to implement 
-       and iterate on core gameplay systems. My contributions included custom collision handling for interactable objects, 
-       hazards, and platform geometry, as well as translating gameplay concepts into technical solutions.
-       </p>
+        I served as the primary physics programmer on a seven-person team (five programmers, two designers). My work
+        covered collision detection and resolution, player movement, the transformation hierarchy, and a range of
+        production tasks including the game trailer and Steam storefront assets.
+        KnightLight shipped publicly on Steam at the end of the second semester.
+      </p>
     </section>
 
+    <!-- ==================== PROJECT CONTEXT ==================== -->
     <section class="doc-section">
       <h2>Project Context</h2>
       <p>
-        KnightLight was built over approximately eight months using a custom C++ engine with a component-based architecture. 
-        The engine integrated Dear ImGui for tooling and debugging, and supported workflows through JSON-configured
-        factory instantiation. Levels were created in Tiled and imported directly into the engine.
+        The engine used a component-based architecture where entities were composed of modular components and
+        instantiated through factory functions driven by JSON configuration files. Levels were authored by designers in
+        Tiled and imported directly into the engine, allowing the programming and design teams to iterate independently.
+        Dear ImGui was integrated as a real-time debugging and visualization layer throughout production.
       </p>
     </section>
 
+    <!-- IMAGE: Custom engine editor screenshot -->
     <figure class="doc-figure">
       <img src="../assets/images/knightlight/engine.png" alt="KnightLight Engine Editor">
-      <figcaption>
-        Inside the KnightLight custom engine editor
-      </figcaption>
+      <figcaption>The KnightLight custom engine editor with Dear ImGui tooling</figcaption>
     </figure>
+
+    <!-- ==================== MY CONTRIBUTIONS ==================== -->
+    <section class="doc-section contributions">
+      <h2>My Contributions</h2>
+
+      <div class="contrib-item">
+        <h3>Physics &amp; Collision System</h3>
+        <p>
+          I designed and implemented the core physics system, including AABB and circle collision detection and
+          resolution, and the player movement system. I initially prototyped collision using the Separating Axis
+          Theorem, but found it unnecessarily complex and unstable for the project's scope — edge cases caused frequent
+          tunneling and unpredictable resolution. I transitioned to a swept AABB approach, predicting the player's
+          future bounding box from velocity and delta time and resolving collisions at the exact time of impact rather
+          than after overlap. This eliminated tunneling and fixed incorrect push-out directions during high-speed
+          movement.
+        </p>
+        <p>
+          To improve platforming feel, I decomposed the player's collision volume into eight sub-AABBs and added
+          velocity-aware corner correction logic. This allowed edge cases — such as barely clearing a ledge — to be
+          handled forgivingly without sacrificing physical consistency.
+        </p>
+
+        <!-- IMAGE: Debug overlay showing AABB collision bounds and velocity vectors -->
+        <figure class="doc-figure">
+          <img src="../assets/images/knightlight/collision_debug.png" alt="AABB collision debug overlay">
+          <figcaption>Dear ImGui debug overlay showing AABB bounds, velocity vectors, and physics tags visualization
+            (hazards in red) at runtime
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="contrib-item">
+        <h3>Collision Filtering &amp; Event Dispatch</h3>
+        <p>
+          I implemented tag-based collision filtering and response logic, enabling distinct behaviors per object type.
+          When a collision was detected, the physics system used the object's tag to immediately dispatch the
+          appropriate gameplay response — spikes triggering damage, interactables invoking scripted behavior, terrain
+          resolving positional constraints. This decoupled gameplay logic from low-level collision detection and avoided
+          large conditional chains.
+        </p>
+      </div>
+
+      <div class="contrib-item">
+        <h3>Transform Hierarchy</h3>
+        <p>
+          I implemented the engine's parent–child transformation system. An initial approach stored child transforms
+          directly inside the parent component, which introduced memory overhead and tightly coupled ownership. I
+          refactored the system so parent transforms maintain a list of child entity IDs; during each update cycle,
+          child transforms are resolved through indexed lookups and updated relative to the parent. This reduced memory
+          duplication and kept hierarchical updates clean and scalable — necessary for animated props and composite
+          objects.
+        </p>
+      </div>
+
+      <div class="contrib-item">
+        <h3>Player Behavior Prototype</h3>
+        <p>
+          I created the initial prototype of the player behavior system, designed for extensibility so future
+          developers could iterate on and scale movement mechanics as gameplay requirements evolved.
+        </p>
+
+        <!-- VIDEO: Short gameplay clip showing player movement and platforming feel -->
+        <figure>
+          <video controls>
+            <source src="../assets/videos/knightlight/player_movement.mp4" type="video/mp4">
+          </video>
+          <figcaption>Player movement and corner correction in action</figcaption>
+        </figure>
+      </div>
+
+      <div class="contrib-item">
+        <h3>Additional Production Work</h3>
+        <p>
+          Beyond engine and gameplay systems, I implemented portions of the C#-based startup and loading screen,
+          produced the official game trailer, sourced licensed music and sound effects, and compiled licensing
+          documentation for all third-party libraries used in the engine.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== KEY TECHNICAL CHALLENGES ==================== -->
+    <section class="doc-section contributions">
+      <h2>Key Technical Challenges</h2>
+
+      <div class="contrib-item">
+        <h3>1. SAT vs. AABB — Recognizing Overengineering</h3>
+        <p>
+          Early in the first semester I attempted to use SAT for what was ultimately a simple AABB collision problem.
+          The approach introduced instability — particularly against line-based floor geometry — and added significant
+          complexity for features (like slanted floors) that were ultimately deprioritized. Switching to a focused
+          AABB solution resolved the instability almost immediately and became the foundation for all subsequent
+          collision work.
+        </p>
+      </div>
+
+      <div class="contrib-item">
+        <h3>2. Corner Collision &amp; Platforming Feel</h3>
+        <p>
+          Handling platform corners fairly required strict case-by-case logic driven by the player's velocity vector
+          and contact normal, which became difficult to generalize. After multiple iterations I reduced the logic to
+          four primary conditionals covering the key movement directions. The result isn't the most elegant code, but
+          it achieves consistent behavior and makes edge-case jumps feel intentional rather than punishing.
+        </p>
+      </div>
+
+      <div class="contrib-item">
+        <h3>3. Parent–Child Transform Refactor</h3>
+        <p>
+          The initial transform hierarchy stored children directly inside parent components — functionally correct, but
+          wasteful and tightly coupled. Refactoring to ID-based child references resolved the ownership issues and
+          scaled cleanly with the rest of the component architecture.
+        </p>
+      </div>
+
+      <div class="contrib-item">
+        <h3>4. Physics Update Ordering</h3>
+        <p>
+          The physics step was executing too late in the frame pipeline, causing subtle discrepancies between expected
+          and observed object behavior. Diagnosing this required step-through debugging and live inspection of
+          intermediate values in Visual Studio. Fixing the update order eliminated the artifacts and reinforced how
+          much deterministic pipeline ordering matters in real-time simulation.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== RESULTS ==================== -->
+    <section class="doc-section">
+      <h2>Results &amp; Release</h2>
+      <p>
+        KnightLight shipped publicly on Steam, completing an eight-month academic production cycle. The final build
+        delivered stable, responsive platforming that met the team's original design goals within the constraints of a
+        custom engine. I supported the release by producing the trailer and capturing screenshots for the Steam
+        storefront.
+      </p>
+
+      <!-- IMAGE: Steam storefront banner or in-game screenshot -->
+      <iframe src="https://store.steampowered.com/widget/3086850/" frameborder="0" width="100%" height="190"></iframe>
+
+      <!-- IMAGE: In-game screenshot showing lighting / atmosphere -->
+      <div class="media-grid">
+        <figure class="doc-figure">
+          <img src="../assets/images/knightlight/screenshot_1.png" alt="KnightLight gameplay screenshot">
+          <figcaption>Illuminated platforming environment</figcaption>
+        </figure>
+        <figure class="doc-figure">
+          <img src="../assets/images/knightlight/screenshot_2.png" alt="KnightLight gameplay screenshot">
+          <figcaption>Hazard and interactable collision in action</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ==================== WHAT I LEARNED ==================== -->
+    <section class="doc-section">
+      <h2>What I Learned</h2>
+      <p>
+        KnightLight gave me a deep, practical foundation in physics programming and the tradeoffs that come with
+        algorithm selection. It was also my first experience on an interdisciplinary team — working closely with
+        designers taught me how to translate gameplay intent into technical systems and how to build tools that support
+        their workflows rather than just my own.
+      </p>
+      <p>
+        On the technical side, I sharpened my debugging skills significantly, including diagnosing a memory corruption
+        issue caused by modifying a <code>std::vector</code> during iteration. Resolving it required restructuring the
+        data model and choosing a container better suited to the access patterns — a concrete lesson in matching data
+        structures to their use case. More broadly, the project gave me a much clearer mental model of how engine
+        subsystems — transforms, physics, rendering, gameplay logic — need to remain decoupled yet synchronized to
+        scale into a cohesive runtime.
+      </p>
+    </section>
 
   </main>
 

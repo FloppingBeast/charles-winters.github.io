@@ -48,8 +48,8 @@
       <p>
         The first milestone was about becoming accustomed to Vulkan's verbose initialization process including instance
         creation, physical and logical device selection, swapchain setup, render passes, and the graphics pipeline. The
-        output for this milestone was a single color-gradient triangle, where each vertex carries a distinct RGB value
-        interpolated across the surface by the rasterizer. Simple visually, but this milestone contained the building
+        output for this milestone was a color-gradient triangle, where each vertex correlates to an RGB value
+        interpolated across the surface. Simple visually, but this milestone contained the building
         blocks for all milestones that followed.
       </p>
     </section>
@@ -64,11 +64,11 @@
     <section class="doc-section">
       <h2>Milestone 2 - Scanline Rasterization</h2>
       <p>
-        With the pipeline established, this milestone extended the renderer to handle full scene geometry using
-        scanline rasterization. Geometry was submitted through vertex and index buffers, with a depth buffer to
-        resolve occlusion. This was the traditional real-time rendering approach — fast, hardware-accelerated,
-        and the foundation against which later ray-based techniques could be compared. Included basic
-        Phong-style shading via GLSL fragment shaders.
+        With the pipeline established, this milestone extended the renderer to handle scene geometry using
+        scanline rasterization. Geometry was passed through vertex and index buffers, with a depth buffer to
+        resolve occlusion. This is the traditional real-time rendering approach and is the foundation for ray-based
+        techniques that we compare with in later milestones. Included basic Phong-style shading via GLSL fragment
+        shaders.
       </p>
     </section>
 
@@ -82,11 +82,13 @@
     <section class="doc-section">
       <h2>Milestone 3 - Ray Casting</h2>
       <p>
-        The pivot from rasterization to ray-based rendering. A compute shader fired one ray per pixel from a
-        virtual camera into the scene, testing for intersections with scene geometry using a BVH acceleration
-        structure. On hit, the surface normal was used to compute a basic shading response. No bounces yet — but
-        shadows, sharp reflections, and correct occlusion all became possible. This is where the visual
-        character of the renderer fundamentally changed.
+        Ray casting is the first step of a full path tracing algorithm. Each pixel generates a single ray, and
+        invokes the ray tracing features to calculate its intersection with the scene. This milestone makes use
+        of the Vulkan Top-Level and Bottom-Level acceleration structures for the ray tracing intersection with the
+        scene.
+        For each ray, I use the same lighting calculation as the scanline algorithm. This produces the exact same
+        picture as the
+        scanline algorithm, but with the scanline technology replaced with ray tracing technology.
       </p>
     </section>
 
@@ -101,10 +103,9 @@
       <h2>Milestone 4 - Pathtracing</h2>
       <p>
         Single-bounce casting became full recursive path tracing. Rays now scatter at surfaces according to a
-        BRDF — diffuse, specular, or a mix — and carry radiance back through the scene from light sources. A
+        BRDF (diffuse, specular, or mix) and carry radiance back through the scene from light sources. A
         Monte Carlo estimator averages many samples per pixel to converge on the true light transport integral.
-        The result was physically correct soft shadows, color bleeding, and indirect illumination. Also noisy as
-        hell per frame, which set up the next two milestones.
+        The result was physically correct soft shadows, color bleeding, and indirect illumination.
       </p>
     </section>
 
@@ -170,14 +171,24 @@
         <source src="../assets/videos/vulkan/project4_BRDF.mp4" type="video/mp4">
       </video>
       <figcaption>
-        
+
       </figcaption>
     </figure>
 
     <section class="doc-section">
       <h2>Milestone 5 - History Tracking</h2>
       <p>
-        
+        The core change was replacing a single line, a simple running average, with one that reaches into the past to
+        retrieve the accumulated value from its reprojected position in the previous frame. Camera movement no longer
+        resets the
+        raytrace; lighting calculations accumulate whenever possible. Each frame's world position is back-projected into
+        the previous frame's space, and the previous accumulation is computed as a weighted average of the 4 pixels in a
+        2×2
+        pattern around that back-projected point. For the three failure cases where back-projection cannot find valid
+        pixels to
+        average, the current pixel's accumulation is restarted from scratch. Otherwise, the current frame's radiance
+        value is
+        folded into the running sum.
       </p>
     </section>
 
@@ -186,7 +197,7 @@
         <source src="../assets/videos/vulkan/project5_mildmovement.mp4" type="video/mp4">
       </video>
       <figcaption>
-        
+
       </figcaption>
     </figure>
 
@@ -195,14 +206,25 @@
         <source src="../assets/videos/vulkan/project5_heavymovement.mp4" type="video/mp4">
       </video>
       <figcaption>
-        
+
       </figcaption>
     </figure>
 
     <section class="doc-section">
       <h2>Milestone 6 - Denoising</h2>
       <p>
-        
+        Denoising is handled by the À-Trous algorithm, run as 5 successive passes of a compute shader.
+        Each pass takes the current image buffer as input and writes a denoised result to a secondary buffer, which is
+        then
+        copied back to become the input for the next iteration. The step width starts at 1 and doubles each iteration
+        (1, 2, 4,
+        8, 16) progressively filtering at larger and larger scales. The heart of the algorithm is a 5×5 sampling pattern
+        spread
+        out by the step width, where samples are combined as a weighted average. The weights are heuristic, accounting
+        for differences in color, surface normals, and depth between the center pixel and
+        each sample. This suppresses contributions across edges and discontinuities to preserve geometric detail while
+        smoothing
+        noise in flat regions.
       </p>
     </section>
 
@@ -211,7 +233,7 @@
         <source src="../assets/videos/vulkan/project6_Denoiser.mp4" type="video/mp4">
       </video>
       <figcaption>
-        
+
       </figcaption>
     </figure>
 
