@@ -35,7 +35,7 @@
       <p>
         KnightLight is a tile-based 2D puzzle-platformer where players navigate a dark environment by illuminating
         their surroundings. It was developed over eight months as part of the GAM 200–250 course sequence at DigiPen
-        Institute of Technology — a multi-semester, team-based production course built around shipping a complete game
+        Institute of Technology which is a multi-semester, team-based production course built around shipping a complete game
         on a custom C++ engine.
       </p>
 
@@ -48,10 +48,10 @@
       </div>
 
       <p>
-        I served as the primary physics programmer on a seven-person team (five programmers, two designers). My work
+        I served as the primary physics programmer on a seven person team (five programmers, two designers). My work
         covered collision detection and resolution, player movement, the transformation hierarchy, and a range of
-        production tasks including the game trailer and Steam storefront assets.
-        KnightLight shipped publicly on Steam at the end of the second semester.
+        production tasks including the game trailer and Steam storefront assets. KnightLight shipped publicly on Steam 
+        at the end of the second semester.
       </p>
     </section>
 
@@ -81,7 +81,7 @@
         <p>
           I designed and implemented the core physics system, including AABB and circle collision detection and
           resolution, and the player movement system. I initially prototyped collision using the Separating Axis
-          Theorem, but found it unnecessarily complex and unstable for the project's scope — edge cases caused frequent
+          Theorem, but found it unnecessarily complex and unstable for the project's scope as the edge cases caused frequent
           tunneling and unpredictable resolution. I transitioned to a swept AABB approach, predicting the player's
           future bounding box from velocity and delta time and resolving collisions at the exact time of impact rather
           than after overlap. This eliminated tunneling and fixed incorrect push-out directions during high-speed
@@ -89,7 +89,7 @@
         </p>
         <p>
           To improve platforming feel, I decomposed the player's collision volume into eight sub-AABBs and added
-          velocity-aware corner correction logic. This allowed edge cases — such as barely clearing a ledge — to be
+          velocity-aware corner correction logic. This allowed edge cases such as barely clearing a ledge to be
           handled forgivingly without sacrificing physical consistency.
         </p>
 
@@ -107,7 +107,7 @@
         <p>
           I implemented tag-based collision filtering and response logic, enabling distinct behaviors per object type.
           When a collision was detected, the physics system used the object's tag to immediately dispatch the
-          appropriate gameplay response — spikes triggering damage, interactables invoking scripted behavior, terrain
+          appropriate gameplay response: spikes triggering damage, interactables invoking scripted behavior, terrain
           resolving positional constraints. This decoupled gameplay logic from low-level collision detection and avoided
           large conditional chains.
         </p>
@@ -120,8 +120,7 @@
           directly inside the parent component, which introduced memory overhead and tightly coupled ownership. I
           refactored the system so parent transforms maintain a list of child entity IDs; during each update cycle,
           child transforms are resolved through indexed lookups and updated relative to the parent. This reduced memory
-          duplication and kept hierarchical updates clean and scalable — necessary for animated props and composite
-          objects.
+          duplication and kept hierarchical updates clean and scalable.
         </p>
       </div>
 
@@ -156,10 +155,10 @@
       <h2>Key Technical Challenges</h2>
 
       <div class="contrib-item">
-        <h3>1. SAT vs. AABB — Recognizing Overengineering</h3>
+        <h3>1. SAT vs. AABB | Recognizing Overengineering</h3>
         <p>
           Early in the first semester I attempted to use SAT for what was ultimately a simple AABB collision problem.
-          The approach introduced instability — particularly against line-based floor geometry — and added significant
+          The approach introduced instability, particularly against line-based floor geometry and added significant
           complexity for features (like slanted floors) that were ultimately deprioritized. Switching to a focused
           AABB solution resolved the instability almost immediately and became the foundation for all subsequent
           collision work.
@@ -179,7 +178,7 @@
       <div class="contrib-item">
         <h3>3. Parent–Child Transform Refactor</h3>
         <p>
-          The initial transform hierarchy stored children directly inside parent components — functionally correct, but
+          The initial transform hierarchy stored children directly inside parent components functionally correct, but
           wasteful and tightly coupled. Refactoring to ID-based child references resolved the ownership issues and
           scaled cleanly with the rest of the component architecture.
         </p>
